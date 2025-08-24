@@ -2,6 +2,6 @@
 
 Module Program
     Sub Main()
-        Application.Run(New MainForm())
+        Application.Run(New MDIMain())
     End Sub
 End Module
