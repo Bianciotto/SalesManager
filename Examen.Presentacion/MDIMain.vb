@@ -4,9 +4,10 @@ Public Class MDIMain
 
     Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripButton.Click, NewWindowToolStripMenuItem.Click
         ' Create a new instance of the child form.
-        Dim ChildForm As New System.Windows.Forms.Form
         ' Make it a child of this MDI form before showing it.
-        ChildForm.MdiParent = Me
+        Dim ChildForm As New System.Windows.Forms.Form With {
+            .MdiParent = Me
+        }
 
         m_ChildFormNumber += 1
         ChildForm.Text = "Window " & m_ChildFormNumber
@@ -15,9 +16,10 @@ Public Class MDIMain
     End Sub
 
     Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripButton.Click
-        Dim OpenFileDialog As New OpenFileDialog
-        OpenFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        OpenFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+        Dim OpenFileDialog As New OpenFileDialog With {
+            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments,
+            .Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+        }
         If (OpenFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
             Dim FileName As String = OpenFileDialog.FileName
             ' TODO: Add code here to open the file.
@@ -25,9 +27,10 @@ Public Class MDIMain
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        Dim SaveFileDialog As New SaveFileDialog
-        SaveFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        SaveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+        Dim SaveFileDialog As New SaveFileDialog With {
+            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments,
+            .Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
+        }
 
         If (SaveFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
             Dim FileName As String = SaveFileDialog.FileName
@@ -94,11 +97,19 @@ Public Class MDIMain
     End Sub
 
     Private Sub ListaDeClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListaDeClientesToolStripMenuItem.Click
-        Dim frm As New FrmCliente
-        frm.MdiParent = Me
-        frm.Dock = DockStyle.Fill
-        frm.FormBorderStyle = FormBorderStyle.Sizable
-        frm.WindowState = FormWindowState.Maximized
+        Dim frm As New FrmCliente With {
+            .MdiParent = Me,
+            .WindowState = FormWindowState.Normal,
+            .FormBorderStyle = FormBorderStyle.Sizable
+        }
         frm.Show()
+    End Sub
+
+    Private Sub VentasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
+
     End Sub
 End Class

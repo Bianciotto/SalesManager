@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.vb" />
-    <Compile Include="DProduct.vb" />
+    <Compile Include="DProducto.vb" />
     <Compile Include="DCliente.vb" />
     <Compile Include="DSale.vb" />
     <Compile Include="DSaleItem.vb" />

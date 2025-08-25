@@ -1,6 +1,7 @@
 ﻿Imports Examen.Entidades
 
 Public Class FrmCliente
+
     Private Sub Formato()
         DgvListClientTabList.Columns(0).HeaderText = "ID"
         DgvListClientTabList.Columns(0).Width = 50
@@ -12,16 +13,20 @@ Public Class FrmCliente
         DgvListClientTabList.Columns(3).Width = 200
     End Sub
 
-    Private Sub ListingClients(dgvParameter As DataGridView, lblParameter As Label)
+    Private Sub ListingClients(dgvParameter As DataGridView, Optional lblParameter As Label = Nothing)
         Try
             Dim LCliente As New Examen.Logica.LCliente()
             dgvParameter.DataSource = LCliente.ListClients()
             Me.Formato()
-            lblParameter.Text = "Total de Registros: " & dgvParameter.Rows.Count.ToString()
+
+            If lblParameter IsNot Nothing Then
+                lblParameter.Text = "Total de Registros: " & dgvParameter.Rows.Count.ToString()
+            End If
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+
 
     Private Sub FindClientsByCoincidence(txtBuscar As TextBox, dgvListado As DataGridView, lblTotal As Label)
         Try
@@ -62,20 +67,22 @@ Public Class FrmCliente
         Next
     End Sub
 
-
-
     Private Sub FormCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.ListingClients(DgvListClientTabList, LblTotalClientTabList)
         Me.ListingClients(DgvListClientTabUpdate, LblTotalClientTabUpdate)
+        Me.ListingClients(DgvListClientTabDelete, Nothing)
+        Me.AgregarColumnaSeleccionar(DgvListClientTabUpdate)
+        Me.AgregarColumnaSeleccionar(DgvListClientTabDelete)
+
     End Sub
-    Private Sub AgregarColumnaSeleccionar()
-        If Not DgvListClientTabUpdate.Columns.Contains("Seleccionar") Then
+    Private Sub AgregarColumnaSeleccionar(dgvListClientTab)
+        If Not dgvListClientTab.Columns.Contains("Seleccionar") Then
             Dim chkCol As New DataGridViewCheckBoxColumn With {
                 .Name = "Seleccionar",
                 .HeaderText = "Editar",
                 .Width = 50
             }
-            DgvListClientTabUpdate.Columns.Insert(0, chkCol)
+            dgvListClientTab.Columns.Insert(0, chkCol)
         End If
     End Sub
 
@@ -93,7 +100,6 @@ Public Class FrmCliente
                     Me.ListingClients(DgvListClientTabList, LblTotalClientTabList)
                     Me.ListingClients(DgvListClientTabUpdate, LblTotalClientTabUpdate)
                     Me.ClearTextBoxByGroupBox(GroupBoxTabAdd)
-                    TabctrlClient.SelectedIndex = 0
                 Else
                     MessageBox.Show("Error al agregar el cliente", "Faltan Ingresar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -107,7 +113,6 @@ Public Class FrmCliente
 
     Private Sub BtnCancelAddClient_Click(sender As Object, e As EventArgs) Handles BtnCancelAddClient.Click
         Me.ClearTextBoxByGroupBox(GroupBoxTabAdd)
-        TabctrlClient.SelectedIndex = 0
     End Sub
 
     Private Sub BtnFindClientTabUpdate_Click(sender As Object, e As EventArgs) Handles BtnFindClientTabUpdate.Click
@@ -117,70 +122,66 @@ Public Class FrmCliente
     Private Sub BtnFindClientTabList_Click(sender As Object, e As EventArgs) Handles BtnFindClientTabList.Click
         FindClientsByCoincidence(TextbFindClientTabList, DgvListClientTabList, LblTotalClientTabList)
     End Sub
-    Private Sub AddColumnSelect()
-        If Not DgvListClientTabUpdate.Columns.Contains("Seleccionar") Then
-            Dim chkCol As New DataGridViewCheckBoxColumn With {
-                .Name = "Seleccionar",
-                .HeaderText = "Editar",
-                .Width = 50
-            }
-            DgvListClientTabUpdate.Columns.Insert(0, chkCol)
-        End If
-    End Sub
     Private Sub DgvListClientTabUpdate_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvListClientTabUpdate.CellContentClick
-        ' Verificamos que se haya hecho clic en la columna "Seleccionar"
         If DgvListClientTabUpdate.Columns(e.ColumnIndex).Name = "Seleccionar" AndAlso e.RowIndex >= 0 Then
-            ' Obtenemos la fila seleccionada
-            Dim fila As DataGridViewRow = DgvListClientTabUpdate.Rows(e.RowIndex)
 
-            ' Cargamos los datos en los TextBox
+            For Each f As DataGridViewRow In DgvListClientTabUpdate.Rows
+                f.Cells("Seleccionar").Value = False
+            Next
+
+            Dim fila As DataGridViewRow = DgvListClientTabUpdate.Rows(e.RowIndex)
+            fila.Cells("Seleccionar").Value = True
+
             TextbClientClientTabUpdate.Text = fila.Cells("Cliente").Value.ToString()
             TextbPhoneClientTabUpdate.Text = fila.Cells("Telefono").Value.ToString()
             TextbMailClientTabUpdate.Text = fila.Cells("Correo").Value.ToString()
+
         End If
     End Sub
+    Private Sub DgvListClientTabDelete_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvListClientTabDelete.CellContentClick
+        If DgvListClientTabUpdate.Columns(e.ColumnIndex).Name = "Seleccionar" AndAlso e.RowIndex >= 0 Then
+
+            For Each f As DataGridViewRow In DgvListClientTabDelete.Rows
+                f.Cells("Seleccionar").Value = False
+            Next
+
+            Dim fila As DataGridViewRow = DgvListClientTabDelete.Rows(e.RowIndex)
+            fila.Cells("Seleccionar").Value = True
+
+            LblEmpyClientClientTabDelete.Text = fila.Cells("Cliente").Value.ToString()
+            LblEmpyPhoneClientTabDelete.Text = fila.Cells("Telefono").Value.ToString()
+            LblEmpyMailClientTabDelete.Text = fila.Cells("Correo").Value.ToString()
+
+        End If
+    End Sub
+
     Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnUpdateClientTabUpdate.Click
-        ' Validar que haya un cliente seleccionado
-        If String.IsNullOrWhiteSpace(TextbClientClientTabUpdate.Text) AndAlso
-       String.IsNullOrWhiteSpace(TextbPhoneClientTabUpdate.Text) AndAlso
-       String.IsNullOrWhiteSpace(TextbMailClientTabUpdate.Text) Then
+
+        If AreClientFieldsEmpty() Then
             MessageBox.Show("No hay datos cargados para actualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
-        ' Buscar la fila marcada en el DataGridView
-        Dim filaSeleccionada As DataGridViewRow = Nothing
-        For Each fila As DataGridViewRow In DgvListClientTabUpdate.Rows
-            If Convert.ToBoolean(fila.Cells("Seleccionar").Value) = True Then
-                filaSeleccionada = fila
-                Exit For
-            End If
-        Next
+        Dim selectedRow As DataGridViewRow = GetSelectedRowByCheckbox(DgvListClientTabUpdate, "Seleccionar")
 
-        If filaSeleccionada Is Nothing Then
+        If selectedRow Is Nothing Then
             MessageBox.Show("Debe seleccionar un cliente para actualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
-        ' Comparar los datos actuales con los originales
-        Dim datosModificados As Boolean = False
+        Dim modifiedData As Boolean = ValidationToModifyData(selectedRow)
 
-        If TextbClientClientTabUpdate.Text <> filaSeleccionada.Cells("Cliente").Value.ToString() Then datosModificados = True
-        If TextbPhoneClientTabUpdate.Text <> filaSeleccionada.Cells("Telefono").Value.ToString() Then datosModificados = True
-        If TextbMailClientTabUpdate.Text <> filaSeleccionada.Cells("Correo").Value.ToString() Then datosModificados = True
-
-        If Not datosModificados Then
+        If Not modifiedData Then
             MessageBox.Show("Los datos no han sido modificados. No se puede actualizar.", "Sin cambios", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
         End If
 
-        ' Confirmación del usuario
         Dim respuesta As DialogResult = MessageBox.Show("¿Estás seguro de que deseas aplicar los cambios?", "Confirmar actualización", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If respuesta = DialogResult.Yes Then
-            ' Crear objeto Cliente actualizado
+
             Dim clienteActualizado As New Cliente With {
-            .Id = Convert.ToInt32(filaSeleccionada.Cells("Id").Value),
+            .Id = Convert.ToInt32(selectedRow.Cells("Id").Value),
             .Cliente = TextbClientClientTabUpdate.Text,
             .Telefono = TextbPhoneClientTabUpdate.Text,
             .Correo = TextbMailClientTabUpdate.Text
@@ -191,10 +192,73 @@ Public Class FrmCliente
                 LCliente.UpdateClient(clienteActualizado)
 
                 MessageBox.Show("Cliente actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ListingClients(DgvListClientTabUpdate, LblTotalClientTabUpdate) ' Refrescar la grilla
+                ListingClients(DgvListClientTabUpdate, LblTotalClientTabUpdate)
                 ClearTextBoxByGroupBox(GroupBoxTabUpdate)
             Catch ex As Exception
                 MessageBox.Show("Error al actualizar: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Function AreClientFieldsEmpty() As Boolean
+        Return String.IsNullOrWhiteSpace(TextbClientClientTabUpdate.Text) AndAlso
+           String.IsNullOrWhiteSpace(TextbPhoneClientTabUpdate.Text) AndAlso
+           String.IsNullOrWhiteSpace(TextbMailClientTabUpdate.Text)
+    End Function
+
+    Private Function GetSelectedRowByCheckbox(dgv As DataGridView, checkboxColumnName As String) As DataGridViewRow
+        For Each row As DataGridViewRow In dgv.Rows
+            If Convert.ToBoolean(row.Cells(checkboxColumnName).Value) = True Then
+                Return row
+            End If
+        Next
+        Return Nothing
+    End Function
+
+
+
+    Private Function ValidationToModifyData(row As DataGridViewRow) As Boolean
+        Return TextbClientClientTabUpdate.Text <> row.Cells("Cliente").Value.ToString() OrElse
+           TextbPhoneClientTabUpdate.Text <> row.Cells("Telefono").Value.ToString() OrElse
+           TextbMailClientTabUpdate.Text <> row.Cells("Correo").Value.ToString()
+    End Function
+
+    Private Sub BtnCancelClientTabUpdate_Click(sender As Object, e As EventArgs) Handles BtnCancelClientTabUpdate.Click
+        ClearTextBoxByGroupBox(GroupBoxTabUpdate)
+    End Sub
+
+    Private Sub BtnFindClientTabDelete_Click(sender As Object, e As EventArgs) Handles BtnFindClientTabDelete.Click
+        FindClientsByCoincidence(TextbFindClientTabDelete, DgvListClientTabDelete, LblTotalClientTabDelete)
+    End Sub
+
+    Private Sub BtnCancelClientTabDelete_Click(sender As Object, e As EventArgs) Handles BtnCancelClientTabDelete.Click
+        For Each f As DataGridViewRow In DgvListClientTabDelete.Rows
+            f.Cells("Seleccionar").Value = False
+        Next
+        LblEmpyClientClientTabDelete.Text = ""
+        LblEmpyPhoneClientTabDelete.Text = ""
+        LblEmpyMailClientTabDelete.Text = ""
+    End Sub
+
+    Private Sub BtnDeleteClientTabDelete_Click(sender As Object, e As EventArgs) Handles BtnDeleteClientTabDelete.Click
+        Dim selectedRow As DataGridViewRow = GetSelectedRowByCheckbox(DgvListClientTabDelete, "Seleccionar")
+        If selectedRow Is Nothing Then
+            MessageBox.Show("Debe seleccionar un cliente para Eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim respuesta As DialogResult = MessageBox.Show("¿Estás seguro de que deseas Eliminar al Cliente?", "Confirmar Eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If respuesta = DialogResult.Yes Then
+            Try
+                Dim LCliente As New Examen.Logica.LCliente()
+                LCliente.DeleteClient(Convert.ToInt32(selectedRow.Cells("Id").Value))
+
+                MessageBox.Show("Cliente Eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ListingClients(DgvListClientTabDelete, LblTotalClientTabDelete)
+                ClearTextBoxByGroupBox(GroupBoxTabDelete)
+            Catch ex As Exception
+                MessageBox.Show("Error al Eliminar: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub

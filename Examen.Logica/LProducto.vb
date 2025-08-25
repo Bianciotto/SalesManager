@@ -1,21 +1,23 @@
-﻿Imports Examen.Entidades
-Imports Examen.Datos
-Public Class LCliente
-    Public Function ListClients() As List(Of Cliente)
+﻿Imports Examen.Datos
+Imports Examen.Entidades
+
+Public Class LProducto
+
+    Public Function ListProduct() As List(Of Producto)
         Try
-            Dim dCliente As New DCliente()
-            Return dCliente.ListClients()
+            Dim dProducto As New DProducto()
+            Return dProducto.ListProducts()
         Catch ex As Exception
-            Console.WriteLine("Error en ListClients: " & ex.Message)
+            Console.WriteLine("Error en ListProducts: " & ex.Message)
             Throw
         End Try
     End Function
-    Public Function FindClientsByCoincidence(parameter As String) As List(Of Cliente)
+    Public Function FindProductsByCoincidence(parameter As String) As List(Of Producto)
         Try
-            Dim dCliente As New DCliente()
-            Return dCliente.FindClientsByCoincidence(parameter)
+            Dim dProducto As New DProducto()
+            Return dProducto.FindProductsByCoincidence(parameter)
         Catch ex As Exception
-            Console.WriteLine("Error en GetClientById: " & ex.Message)
+            Console.WriteLine("Error en FindProductsByCoincidence: " & ex.Message)
             Throw
         End Try
     End Function
@@ -38,10 +40,10 @@ Public Class LCliente
             Throw
         End Try
     End Function
-    Public Function DeleteClient(idcliente As Integer) As Boolean
+    Public Function DeleteClient(idCliente As Integer) As Boolean
         Try
             Dim dCliente As New DCliente()
-            Return dCliente.DeleteClient(idcliente)
+            Return dCliente.DeleteClient(idCliente)
         Catch ex As Exception
             Console.WriteLine("Error en DeleteClient: " & ex.Message)
             Throw

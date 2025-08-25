@@ -1,6 +1,6 @@
 ﻿Imports Examen.Entidades
 Imports System.Data.SqlClient
-Public Class DProduct
+Public Class DProducto
     Inherits ApplicationDbContext
 
     Public Function ListProducts() As List(Of Producto)
@@ -23,6 +23,7 @@ Public Class DProduct
             Throw
         End Try
     End Function
+
 
     Public Function FindProductById(id As Integer) As Producto
         Try
@@ -111,5 +112,36 @@ Public Class DProduct
     }
     End Function
 
+    Public Function FindProductsByCoincidence(parameter As String) As List(Of Producto)
+        Dim result As New List(Of Producto)
+        Try
+            Using connection As SqlConnection = ApplicationDbContext.GetConnection()
+                connection.Open()
+                Dim query As String = "
+                SELECT ID, Nombre, Precio, Categoria 
+                FROM Productos  
+                WHERE Nombre LIKE @Parameter  
+                OR Categoria LIKE @Parameter"
+                Using command As New SqlCommand(query, connection)
+                    command.Parameters.Add("@Parameter", SqlDbType.NVarChar).Value = "%" & parameter & "%"
+                    Using reader As SqlDataReader = command.ExecuteReader()
+                        While reader.Read()
+                            Dim producto As New Producto With {
+                            .Id = If(reader.IsDBNull(reader.GetOrdinal("ID")), 0, Convert.ToInt32(reader("ID"))),
+                            .Nombre = If(reader.IsDBNull(reader.GetOrdinal("Nombre")), "", reader("Nombre").ToString()),
+                            .Precio = If(reader.IsDBNull(reader.GetOrdinal("Precio")), 0D, Convert.ToDecimal(reader("Precio"))),
+                            .Categoria = If(reader.IsDBNull(reader.GetOrdinal("Categoria")), "", reader("Categoria").ToString())
+                        }
+                            result.Add(producto)
+                        End While
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            Console.WriteLine("Error en FindProductsByCoincidence: " & ex.Message)
+            Throw
+        End Try
+        Return result
+    End Function
 
 End Class

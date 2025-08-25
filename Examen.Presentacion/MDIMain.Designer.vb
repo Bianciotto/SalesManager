@@ -82,7 +82,7 @@ Partial Class MDIMain
         Me.ToolBarToolStripMenuItem.CheckOnClick = True
         Me.ToolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ToolBarToolStripMenuItem.Name = "ToolBarToolStripMenuItem"
-        Me.ToolBarToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.ToolBarToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ToolBarToolStripMenuItem.Text = "&Toolbar"
         '
         'StatusBarToolStripMenuItem
@@ -91,7 +91,7 @@ Partial Class MDIMain
         Me.StatusBarToolStripMenuItem.CheckOnClick = True
         Me.StatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.StatusBarToolStripMenuItem.Name = "StatusBarToolStripMenuItem"
-        Me.StatusBarToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.StatusBarToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.StatusBarToolStripMenuItem.Text = "&Status Bar"
         '
         'WindowsMenu
