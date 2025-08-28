@@ -1,41 +1,41 @@
 ﻿Public Class Venta
-    Private _id As Integer
-    Private _idCliente As Integer
+    Private _iD As Integer
+    Private _iDCliente As Integer
     Private _fecha As DateTime
     Private _total As Decimal
 
-    Public Property Id As Integer
+    Public Property ID As Integer
         Get
-            Return _id
+            Return _iD
         End Get
         Set(value As Integer)
-            _id = value
+            _iD = value
         End Set
     End Property
 
-    Public Property IdCliente As Integer
+    Public Property IDCliente As Integer
         Get
-            Return _idCliente
+            Return _iDCliente
         End Get
         Set(value As Integer)
-            _idCliente = value
+            _iDCliente = value
         End Set
     End Property
 
-    Public Property Fecha As Date
+    Public Property Fecha As DateTime?
         Get
             Return _fecha
         End Get
-        Set(value As Date)
+        Set(value As DateTime?)
             _fecha = value
         End Set
     End Property
 
-    Public Property Total As Decimal
+    Public Property Total As Decimal?
         Get
             Return _total
         End Get
-        Set(value As Decimal)
+        Set(value As Decimal?)
             _total = value
         End Set
     End Property

@@ -72,8 +72,8 @@ Public Class DCliente
                 conn.Open()
                 Using command As New SqlCommand(query, conn)
                     command.Parameters.AddWithValue("@Cliente", client.Cliente)
-                    command.Parameters.AddWithValue("@Telefono", client.Telefono)
-                    command.Parameters.AddWithValue("@Correo", client.Correo)
+                    command.Parameters.AddWithValue("@Telefono", If(String.IsNullOrWhiteSpace(client.Telefono), DBNull.Value, client.Telefono))
+                    command.Parameters.AddWithValue("@Correo", If(String.IsNullOrWhiteSpace(client.Correo), DBNull.Value, client.Correo))
                     Dim rowsAffected As Integer = command.ExecuteNonQuery()
                     Return rowsAffected > 0
                 End Using
@@ -120,7 +120,7 @@ Public Class DCliente
             Throw
         End Try
     End Function
-    'puede ser que la use para mas filtros
+
     Public Function FindClientById(id As Integer) As Cliente
         Try
             Dim query As String = "

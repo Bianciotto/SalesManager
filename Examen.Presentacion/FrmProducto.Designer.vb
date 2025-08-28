@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormProducto
+Partial Class FrmProducto
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -30,7 +30,7 @@ Partial Class FormProducto
         Me.LblTotalProductTabList = New System.Windows.Forms.Label()
         Me.DgvListProductTabList = New System.Windows.Forms.DataGridView()
         Me.TabPageAddProduct = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxProductTabAdd = New System.Windows.Forms.GroupBox()
         Me.BtnAddProductTabAdd = New System.Windows.Forms.Button()
         Me.BtnCancelProductTabAdd = New System.Windows.Forms.Button()
         Me.LblCategoryProductTabAdd = New System.Windows.Forms.Label()
@@ -43,9 +43,9 @@ Partial Class FormProducto
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.BtnFindProductTabUpdate = New System.Windows.Forms.Button()
         Me.TextbFindProductTabUpdate = New System.Windows.Forms.TextBox()
-        Me.GroupBoxTabUpdate = New System.Windows.Forms.GroupBox()
-        Me.BtnUpdateProductTabUpdate = New System.Windows.Forms.Button()
+        Me.GroupBoxProductTabUpdate = New System.Windows.Forms.GroupBox()
         Me.BtnCancelProductTabUpdate = New System.Windows.Forms.Button()
+        Me.BtnUpdateProductTabUpdate = New System.Windows.Forms.Button()
         Me.LblCategoryProductTabUpdate = New System.Windows.Forms.Label()
         Me.LblPriceProductTabUpdate = New System.Windows.Forms.Label()
         Me.LblNameProductTabUpdate = New System.Windows.Forms.Label()
@@ -57,8 +57,8 @@ Partial Class FormProducto
         Me.TabPageDeleteProduct = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.BtnFindProductTabDelete = New System.Windows.Forms.Button()
-        Me.GroupBoxTabDelete = New System.Windows.Forms.GroupBox()
-        Me.BtnDeleteProductoTabDelete = New System.Windows.Forms.Button()
+        Me.GroupBoxProductTabDelete = New System.Windows.Forms.GroupBox()
+        Me.BtnDeleteProductTabDelete = New System.Windows.Forms.Button()
         Me.BtnCancelProductTabDelete = New System.Windows.Forms.Button()
         Me.LblEmpyCategoryProductTabDelete = New System.Windows.Forms.Label()
         Me.LblEmpyPriceProductTabDelete = New System.Windows.Forms.Label()
@@ -74,14 +74,14 @@ Partial Class FormProducto
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DgvListProductTabList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageAddProduct.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.GroupBoxProductTabAdd.SuspendLayout()
         Me.TabPageUpdateProduct.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
-        Me.GroupBoxTabUpdate.SuspendLayout()
+        Me.GroupBoxProductTabUpdate.SuspendLayout()
         CType(Me.DgvListProductTabUpdate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageDeleteProduct.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
-        Me.GroupBoxTabDelete.SuspendLayout()
+        Me.GroupBoxProductTabDelete.SuspendLayout()
         CType(Me.DgvListProductTabDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -113,7 +113,7 @@ Partial Class FormProducto
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.BtnFindProductTabProduct, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.TextbFindProductTabList, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LblTotalProductTabList, 1, 3)
@@ -174,7 +174,7 @@ Partial Class FormProducto
         '
         'TabPageAddProduct
         '
-        Me.TabPageAddProduct.Controls.Add(Me.GroupBox1)
+        Me.TabPageAddProduct.Controls.Add(Me.GroupBoxProductTabAdd)
         Me.TabPageAddProduct.Location = New System.Drawing.Point(4, 22)
         Me.TabPageAddProduct.Name = "TabPageAddProduct"
         Me.TabPageAddProduct.Padding = New System.Windows.Forms.Padding(3)
@@ -183,22 +183,22 @@ Partial Class FormProducto
         Me.TabPageAddProduct.Text = "Agregar"
         Me.TabPageAddProduct.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'GroupBoxProductTabAdd
         '
-        Me.GroupBox1.Controls.Add(Me.BtnAddProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.BtnCancelProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.LblCategoryProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.LblPriceProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.LblNameProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.TextbCategoryProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.TextbPriceProductTabAdd)
-        Me.GroupBox1.Controls.Add(Me.TextbNameProductTabAdd)
-        Me.GroupBox1.Location = New System.Drawing.Point(112, 27)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(568, 370)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Nuevo Producto"
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.BtnAddProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.BtnCancelProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.LblCategoryProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.LblPriceProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.LblNameProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.TextbCategoryProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.TextbPriceProductTabAdd)
+        Me.GroupBoxProductTabAdd.Controls.Add(Me.TextbNameProductTabAdd)
+        Me.GroupBoxProductTabAdd.Location = New System.Drawing.Point(112, 27)
+        Me.GroupBoxProductTabAdd.Name = "GroupBoxProductTabAdd"
+        Me.GroupBoxProductTabAdd.Size = New System.Drawing.Size(568, 370)
+        Me.GroupBoxProductTabAdd.TabIndex = 0
+        Me.GroupBoxProductTabAdd.TabStop = False
+        Me.GroupBoxProductTabAdd.Text = "Nuevo Producto"
         '
         'BtnAddProductTabAdd
         '
@@ -290,7 +290,7 @@ Partial Class FormProducto
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel2.Controls.Add(Me.BtnFindProductTabUpdate, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TextbFindProductTabUpdate, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.GroupBoxTabUpdate, 0, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupBoxProductTabUpdate, 0, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.LblTotalProductTabUpdate, 0, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.DgvListProductTabUpdate, 0, 2)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
@@ -324,43 +324,43 @@ Partial Class FormProducto
         Me.TextbFindProductTabUpdate.Size = New System.Drawing.Size(135, 26)
         Me.TextbFindProductTabUpdate.TabIndex = 1
         '
-        'GroupBoxTabUpdate
+        'GroupBoxProductTabUpdate
         '
-        Me.GroupBoxTabUpdate.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.GroupBoxTabUpdate.Controls.Add(Me.BtnUpdateProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.BtnCancelProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.LblCategoryProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.LblPriceProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.LblNameProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.TextbCategoryProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.TextbPriceProductTabUpdate)
-        Me.GroupBoxTabUpdate.Controls.Add(Me.TextbNameProductTabUpdate)
-        Me.GroupBoxTabUpdate.Location = New System.Drawing.Point(33, 253)
-        Me.GroupBoxTabUpdate.Name = "GroupBoxTabUpdate"
-        Me.GroupBoxTabUpdate.Size = New System.Drawing.Size(732, 169)
-        Me.GroupBoxTabUpdate.TabIndex = 2
-        Me.GroupBoxTabUpdate.TabStop = False
-        Me.GroupBoxTabUpdate.Text = "Nuevos Datos"
-        '
-        'BtnUpdateProductTabUpdate
-        '
-        Me.BtnUpdateProductTabUpdate.Font = New System.Drawing.Font("Calisto MT", 12.0!)
-        Me.BtnUpdateProductTabUpdate.Location = New System.Drawing.Point(493, 52)
-        Me.BtnUpdateProductTabUpdate.Name = "BtnUpdateProductTabUpdate"
-        Me.BtnUpdateProductTabUpdate.Size = New System.Drawing.Size(103, 36)
-        Me.BtnUpdateProductTabUpdate.TabIndex = 6
-        Me.BtnUpdateProductTabUpdate.Text = "Cancelar"
-        Me.BtnUpdateProductTabUpdate.UseVisualStyleBackColor = True
+        Me.GroupBoxProductTabUpdate.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.BtnCancelProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.BtnUpdateProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.LblCategoryProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.LblPriceProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.LblNameProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.TextbCategoryProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.TextbPriceProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Controls.Add(Me.TextbNameProductTabUpdate)
+        Me.GroupBoxProductTabUpdate.Location = New System.Drawing.Point(33, 253)
+        Me.GroupBoxProductTabUpdate.Name = "GroupBoxProductTabUpdate"
+        Me.GroupBoxProductTabUpdate.Size = New System.Drawing.Size(732, 169)
+        Me.GroupBoxProductTabUpdate.TabIndex = 2
+        Me.GroupBoxProductTabUpdate.TabStop = False
+        Me.GroupBoxProductTabUpdate.Text = "Nuevos Datos"
         '
         'BtnCancelProductTabUpdate
         '
         Me.BtnCancelProductTabUpdate.Font = New System.Drawing.Font("Calisto MT", 12.0!)
-        Me.BtnCancelProductTabUpdate.Location = New System.Drawing.Point(612, 52)
+        Me.BtnCancelProductTabUpdate.Location = New System.Drawing.Point(493, 52)
         Me.BtnCancelProductTabUpdate.Name = "BtnCancelProductTabUpdate"
         Me.BtnCancelProductTabUpdate.Size = New System.Drawing.Size(103, 36)
-        Me.BtnCancelProductTabUpdate.TabIndex = 7
-        Me.BtnCancelProductTabUpdate.Text = "Actualizar"
+        Me.BtnCancelProductTabUpdate.TabIndex = 6
+        Me.BtnCancelProductTabUpdate.Text = "Cancelar"
         Me.BtnCancelProductTabUpdate.UseVisualStyleBackColor = True
+        '
+        'BtnUpdateProductTabUpdate
+        '
+        Me.BtnUpdateProductTabUpdate.Font = New System.Drawing.Font("Calisto MT", 12.0!)
+        Me.BtnUpdateProductTabUpdate.Location = New System.Drawing.Point(612, 52)
+        Me.BtnUpdateProductTabUpdate.Name = "BtnUpdateProductTabUpdate"
+        Me.BtnUpdateProductTabUpdate.Size = New System.Drawing.Size(103, 36)
+        Me.BtnUpdateProductTabUpdate.TabIndex = 7
+        Me.BtnUpdateProductTabUpdate.Text = "Actualizar"
+        Me.BtnUpdateProductTabUpdate.UseVisualStyleBackColor = True
         '
         'LblCategoryProductTabUpdate
         '
@@ -457,7 +457,7 @@ Partial Class FormProducto
         Me.TableLayoutPanel3.ColumnCount = 1
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel3.Controls.Add(Me.BtnFindProductTabDelete, 0, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.GroupBoxTabDelete, 0, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.GroupBoxProductTabDelete, 0, 4)
         Me.TableLayoutPanel3.Controls.Add(Me.TextbFindProductTabDelete, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.LblTotalProductTabDelete, 0, 3)
         Me.TableLayoutPanel3.Controls.Add(Me.DgvListProductTabDelete, 0, 2)
@@ -483,33 +483,33 @@ Partial Class FormProducto
         Me.BtnFindProductTabDelete.Text = "Buscar"
         Me.BtnFindProductTabDelete.UseVisualStyleBackColor = True
         '
-        'GroupBoxTabDelete
+        'GroupBoxProductTabDelete
         '
-        Me.GroupBoxTabDelete.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.GroupBoxTabDelete.Controls.Add(Me.BtnDeleteProductoTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.BtnCancelProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblEmpyCategoryProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblEmpyPriceProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblEmpyNameProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblCategoryProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblPriceProductTabDelete)
-        Me.GroupBoxTabDelete.Controls.Add(Me.LblNameProductTabDelete)
-        Me.GroupBoxTabDelete.Location = New System.Drawing.Point(33, 253)
-        Me.GroupBoxTabDelete.Name = "GroupBoxTabDelete"
-        Me.GroupBoxTabDelete.Size = New System.Drawing.Size(732, 169)
-        Me.GroupBoxTabDelete.TabIndex = 1
-        Me.GroupBoxTabDelete.TabStop = False
-        Me.GroupBoxTabDelete.Text = "Producto a Eliminar"
+        Me.GroupBoxProductTabDelete.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.BtnDeleteProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.BtnCancelProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblEmpyCategoryProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblEmpyPriceProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblEmpyNameProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblCategoryProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblPriceProductTabDelete)
+        Me.GroupBoxProductTabDelete.Controls.Add(Me.LblNameProductTabDelete)
+        Me.GroupBoxProductTabDelete.Location = New System.Drawing.Point(33, 253)
+        Me.GroupBoxProductTabDelete.Name = "GroupBoxProductTabDelete"
+        Me.GroupBoxProductTabDelete.Size = New System.Drawing.Size(732, 169)
+        Me.GroupBoxProductTabDelete.TabIndex = 1
+        Me.GroupBoxProductTabDelete.TabStop = False
+        Me.GroupBoxProductTabDelete.Text = "Producto a Eliminar"
         '
-        'BtnDeleteProductoTabDelete
+        'BtnDeleteProductTabDelete
         '
-        Me.BtnDeleteProductoTabDelete.Font = New System.Drawing.Font("Calisto MT", 12.0!)
-        Me.BtnDeleteProductoTabDelete.Location = New System.Drawing.Point(612, 52)
-        Me.BtnDeleteProductoTabDelete.Name = "BtnDeleteProductoTabDelete"
-        Me.BtnDeleteProductoTabDelete.Size = New System.Drawing.Size(103, 36)
-        Me.BtnDeleteProductoTabDelete.TabIndex = 4
-        Me.BtnDeleteProductoTabDelete.Text = "Eliminar"
-        Me.BtnDeleteProductoTabDelete.UseVisualStyleBackColor = True
+        Me.BtnDeleteProductTabDelete.Font = New System.Drawing.Font("Calisto MT", 12.0!)
+        Me.BtnDeleteProductTabDelete.Location = New System.Drawing.Point(612, 52)
+        Me.BtnDeleteProductTabDelete.Name = "BtnDeleteProductTabDelete"
+        Me.BtnDeleteProductTabDelete.Size = New System.Drawing.Size(103, 36)
+        Me.BtnDeleteProductTabDelete.TabIndex = 4
+        Me.BtnDeleteProductTabDelete.Text = "Eliminar"
+        Me.BtnDeleteProductTabDelete.UseVisualStyleBackColor = True
         '
         'BtnCancelProductTabDelete
         '
@@ -616,13 +616,13 @@ Partial Class FormProducto
         Me.DgvListProductTabDelete.Size = New System.Drawing.Size(792, 134)
         Me.DgvListProductTabDelete.TabIndex = 4
         '
-        'FormProducto
+        'FrmProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.TabContrlProduct)
-        Me.Name = "FormProducto"
+        Me.Name = "FrmProducto"
         Me.Text = "Productos"
         Me.TabContrlProduct.ResumeLayout(False)
         Me.TabPageListProduct.ResumeLayout(False)
@@ -630,19 +630,19 @@ Partial Class FormProducto
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.DgvListProductTabList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageAddProduct.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GroupBoxProductTabAdd.ResumeLayout(False)
+        Me.GroupBoxProductTabAdd.PerformLayout()
         Me.TabPageUpdateProduct.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        Me.GroupBoxTabUpdate.ResumeLayout(False)
-        Me.GroupBoxTabUpdate.PerformLayout()
+        Me.GroupBoxProductTabUpdate.ResumeLayout(False)
+        Me.GroupBoxProductTabUpdate.PerformLayout()
         CType(Me.DgvListProductTabUpdate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageDeleteProduct.ResumeLayout(False)
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
-        Me.GroupBoxTabDelete.ResumeLayout(False)
-        Me.GroupBoxTabDelete.PerformLayout()
+        Me.GroupBoxProductTabDelete.ResumeLayout(False)
+        Me.GroupBoxProductTabDelete.PerformLayout()
         CType(Me.DgvListProductTabDelete, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -658,7 +658,7 @@ Partial Class FormProducto
     Friend WithEvents TextbFindProductTabList As TextBox
     Friend WithEvents DgvListProductTabList As DataGridView
     Friend WithEvents LblTotalProductTabList As Label
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBoxProductTabAdd As GroupBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents BtnAddProductTabAdd As Button
@@ -671,9 +671,9 @@ Partial Class FormProducto
     Friend WithEvents TextbNameProductTabAdd As TextBox
     Friend WithEvents BtnFindProductTabUpdate As Button
     Friend WithEvents TextbFindProductTabUpdate As TextBox
-    Friend WithEvents GroupBoxTabUpdate As GroupBox
-    Friend WithEvents BtnUpdateProductTabUpdate As Button
+    Friend WithEvents GroupBoxProductTabUpdate As GroupBox
     Friend WithEvents BtnCancelProductTabUpdate As Button
+    Friend WithEvents BtnUpdateProductTabUpdate As Button
     Friend WithEvents LblCategoryProductTabUpdate As Label
     Friend WithEvents LblPriceProductTabUpdate As Label
     Friend WithEvents LblNameProductTabUpdate As Label
@@ -683,11 +683,11 @@ Partial Class FormProducto
     Friend WithEvents LblTotalProductTabUpdate As Label
     Friend WithEvents DgvListProductTabUpdate As DataGridView
     Friend WithEvents BtnFindProductTabDelete As Button
-    Friend WithEvents GroupBoxTabDelete As GroupBox
+    Friend WithEvents GroupBoxProductTabDelete As GroupBox
     Friend WithEvents LblNameProductTabDelete As Label
     Friend WithEvents TextbFindProductTabDelete As TextBox
     Friend WithEvents LblTotalProductTabDelete As Label
-    Friend WithEvents BtnDeleteProductoTabDelete As Button
+    Friend WithEvents BtnDeleteProductTabDelete As Button
     Friend WithEvents BtnCancelProductTabDelete As Button
     Friend WithEvents LblEmpyCategoryProductTabDelete As Label
     Friend WithEvents LblEmpyPriceProductTabDelete As Label

@@ -78,8 +78,8 @@
     <Compile Include="ApplicationDbContext.vb" />
     <Compile Include="DProducto.vb" />
     <Compile Include="DCliente.vb" />
-    <Compile Include="DSale.vb" />
-    <Compile Include="DSaleItem.vb" />
+    <Compile Include="DVenta.vb" />
+    <Compile Include="DVentaItem.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
