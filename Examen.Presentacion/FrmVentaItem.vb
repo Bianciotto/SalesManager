@@ -37,10 +37,10 @@ Public Class FrmVentaItem
             .Columns.AddRange(
             New DataGridViewTextBoxColumn() With {.Name = "Id", .HeaderText = "Id", .ReadOnly = True, .Width = 50},
             New DataGridViewTextBoxColumn() With {.Name = "Nombre", .HeaderText = "Nombre", .ReadOnly = True, .Width = 150},
-            New DataGridViewTextBoxColumn() With {.Name = "Precio", .HeaderText = "Precio", .ReadOnly = True, .Width = 80, .DefaultCellStyle = New DataGridViewCellStyle() With {.Format = "C2"}},
+            New DataGridViewTextBoxColumn() With {.Name = "Precio", .HeaderText = "Precio", .ReadOnly = True, .Width = 80, .DefaultCellStyle = New DataGridViewCellStyle() With {.Format = FormatPrice(0D)}},
             New DataGridViewTextBoxColumn() With {.Name = "Categoria", .HeaderText = "Categoría", .ReadOnly = True, .Width = 100},
             New DataGridViewTextBoxColumn() With {.Name = "Cantidad", .HeaderText = "Cantidad", .ReadOnly = False, .Width = 70},
-            New DataGridViewTextBoxColumn() With {.Name = "Subtotal", .HeaderText = "Subtotal", .ReadOnly = True, .Width = 90, .DefaultCellStyle = New DataGridViewCellStyle() With {.Format = "C2"}},
+            New DataGridViewTextBoxColumn() With {.Name = "Subtotal", .HeaderText = "Subtotal", .ReadOnly = True, .Width = 90, .DefaultCellStyle = New DataGridViewCellStyle() With {.Format = FormatPrice(0D)}},
             New DataGridViewButtonColumn() With {.Name = "Quitar", .HeaderText = "Quitar", .Text = "🗑 Quitar", .UseColumnTextForButtonValue = True, .ReadOnly = True, .Width = 80}
         )
 
@@ -79,19 +79,8 @@ Public Class FrmVentaItem
             New DataGridViewTextBoxColumn With {.Name = "Precio", .HeaderText = "Precio", .ReadOnly = True, .Width = 80, .DefaultCellStyle = New DataGridViewCellStyle With {.Format = "C2"}},
             New DataGridViewTextBoxColumn With {.Name = "Categoria", .HeaderText = "Categoría", .ReadOnly = True, .Width = 100},
             New DataGridViewTextBoxColumn With {.Name = "Cantidad", .HeaderText = "Cantidad", .ValueType = GetType(Integer), .Width = 70, .DefaultCellStyle = New DataGridViewCellStyle With {.Alignment = DataGridViewContentAlignment.MiddleRight}},
-            New DataGridViewButtonColumn With {.Name = "Agregar", .HeaderText = "Agregar", .Text = "Agregar", .UseColumnTextForButtonValue = True, .ReadOnly = True, .Width = 80},
-            New DataGridViewTextBoxColumn With {
-                .Name = "SubTotal",
-                .HeaderText = "SubTotal",
-                .ValueType = GetType(String),
-                .ReadOnly = True,
-                .Width = 90,
-                .DefaultCellStyle = New DataGridViewCellStyle With {
-                    .Format = "C2",
-                    .Alignment = DataGridViewContentAlignment.MiddleRight,
-                    .NullValue = FormatPrice(0D)
-                }
-            }
+            New DataGridViewTextBoxColumn With {.Name = "SubTotal", .HeaderText = "SubTotal", .ValueType = GetType(String), .ReadOnly = True, .Width = 90, .DefaultCellStyle = New DataGridViewCellStyle With {.Alignment = DataGridViewContentAlignment.MiddleRight, .NullValue = FormatPrice(0D)}},
+            New DataGridViewButtonColumn With {.Name = "Agregar", .HeaderText = "Agregar", .Text = "Agregar", .UseColumnTextForButtonValue = True, .ReadOnly = True, .Width = 80}
         )
 
             .AllowUserToAddRows = False
@@ -139,7 +128,7 @@ Public Class FrmVentaItem
                 .HeaderText = "Total",
                 .DataPropertyName = "Total"
             }
-            colTotal.DefaultCellStyle.Format = "C2"
+            colTotal.DefaultCellStyle.Format = FormatPrice(0D)
             colTotal.Width = 100
             .Columns.Add(colTotal)
         End With
@@ -185,9 +174,36 @@ Public Class FrmVentaItem
 
                 RemoveHandler txtBox.KeyPress, AddressOf ValidarCantidadKeyPress
                 AddHandler txtBox.KeyPress, AddressOf ValidarCantidadKeyPress
+
+                ActualizarSubTotales(DgvListProductSaleItemTabSell)
             End If
         End If
     End Sub
+
+    ' Método para actualizar SubTotal en todas las filas
+    Private Sub ActualizarSubTotales(dgv As DataGridView)
+        For Each fila As DataGridViewRow In dgv.Rows
+            ' Evitar filas nuevas (la fila vacía del DataGridView)
+            If Not fila.IsNewRow Then
+                Dim precioObj = fila.Cells("Precio").Value
+                Dim cantidadObj = fila.Cells("Cantidad").Value
+
+                ' Validar que los valores existan y sean numéricos
+                Dim precio As Decimal = 0D
+                Dim cantidad As Decimal = 0D
+
+                Decimal.TryParse(Convert.ToString(precioObj), precio)
+                Decimal.TryParse(Convert.ToString(cantidadObj), cantidad)
+
+                ' Calcular subtotal
+                Dim subtotal As Decimal = precio * cantidad
+
+                ' Asignar valor formateado a la celda SubTotal
+                fila.Cells("SubTotal").Value = FormatPrice(0D)
+            End If
+        Next
+    End Sub
+
 
     Private Sub ValidarCantidadKeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
@@ -381,10 +397,16 @@ Public Class FrmVentaItem
         If Not precio.HasValue Then
             Return ""
         Else
+            ' Crear cultura para Argentina
             Dim cultura As New CultureInfo("es-AR")
-            Return precio.Value.ToString("C", cultura)
+            ' Forzar el símbolo de moneda a $
+            Dim moneda As NumberFormatInfo = DirectCast(cultura.NumberFormat.Clone(), NumberFormatInfo)
+            moneda.CurrencySymbol = "$"
+            ' Formatear el valor
+            Return precio.Value.ToString("C2", moneda)
         End If
     End Function
+
 
     Private Sub CalcularSubtotalFila(filaIndex As Integer)
         Dim fila = DgvListProductSaleItemTabSell.Rows(filaIndex)
@@ -867,6 +889,7 @@ Public Class FrmVentaItem
             Return
         End If
     End Sub
+
 
 
 #End Region

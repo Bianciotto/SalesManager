@@ -5,7 +5,7 @@ Public Class DCliente
     Public Function ListClients() As List(Of Cliente)
         Try
             Dim clients As New List(Of Cliente)()
-            Dim query As String = "SELECT ID, Cliente, Telefono, Correo FROM Clientes"
+            Dim query As String = "SELECT ID, Cliente, Correo, Telefono FROM Clientes"
             Using connection As SqlConnection = ApplicationDbContext.GetConnection
                 connection.Open()
                 Using command As New SqlCommand(query, connection)

@@ -16,7 +16,7 @@ Public Class FrmCliente
         Try
             Dim lCliente As New Examen.Logica.LClient()
             dgvParameter.DataSource = lCliente.ListClients()
-            Me.Formato()
+
 
             If lblParameter IsNot Nothing Then
                 lblParameter.Text = "Total de Registros: " & dgvParameter.Rows.Count.ToString()
@@ -33,30 +33,19 @@ Public Class FrmCliente
                 .HeaderText = "Editar",
                 .Width = 50
             }
-            dgvListClientTab.Columns.Insert(0, chkCol)
+            dgvListClientTab.Columns.Insert(4, chkCol)
         End If
     End Sub
 
-    Private Sub Formato()
-        DgvListClientTabList.Columns(0).HeaderText = "ID"
-        DgvListClientTabList.Columns(0).Width = 50
-        DgvListClientTabList.Columns(1).HeaderText = "Nombre"
-        DgvListClientTabList.Columns(1).Width = 200
-        DgvListClientTabList.Columns(2).HeaderText = "Telefono"
-        DgvListClientTabList.Columns(2).Width = 200
-        DgvListClientTabList.Columns(3).HeaderText = "Correo"
-        DgvListClientTabList.Columns(3).Width = 200
-    End Sub
-
     Private Sub FormatearGrid(dgv As DataGridView)
-        DgvListClientTabList.Columns(0).HeaderText = "ID"
-        DgvListClientTabList.Columns(0).Width = 50
-        DgvListClientTabList.Columns(1).HeaderText = "Nombre"
-        DgvListClientTabList.Columns(1).Width = 200
-        DgvListClientTabList.Columns(2).HeaderText = "Telefono"
-        DgvListClientTabList.Columns(2).Width = 200
-        DgvListClientTabList.Columns(3).HeaderText = "Correo"
-        DgvListClientTabList.Columns(3).Width = 200
+        dgv.Columns(0).HeaderText = "ID"
+        dgv.Columns(0).Width = 50
+        dgv.Columns(1).HeaderText = "Nombre"
+        dgv.Columns(1).Width = 200
+        dgv.Columns(2).HeaderText = "Telefono"
+        dgv.Columns(2).Width = 200
+        dgv.Columns(3).HeaderText = "Correo"
+        dgv.Columns(3).Width = 200
     End Sub
 
 #End Region
@@ -76,7 +65,6 @@ Public Class FrmCliente
             Dim parametro As String = txtFind.Text
 
             dgvList.DataSource = lCliente.FindClientsByCoincidence(parametro)
-            FormatearGrid(dgvList)
 
             lblTotal.Text = "Total de Registros: " & dgvList.Rows.Count.ToString()
         Catch ex As Exception
@@ -93,8 +81,8 @@ Public Class FrmCliente
             Try
                 Dim cliente As New Examen.Entidades.Cliente With {
                     .Cliente = TextbClientClientTabAdd.Text,
-                    .Telefono = TextbPhoneClientTabAdd.Text,
-                    .Correo = TextbMailClientTabAdd.Text
+                    .Correo = TextbMailClientTabAdd.Text,
+                    .Telefono = TextbPhoneClientTabAdd.Text
                 }
                 Dim lCliente As New Examen.Logica.LClient()
                 If lCliente.AddClient(cliente) Then

@@ -22,6 +22,7 @@ Partial Class FrmVentaItem
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmVentaItem))
         Me.TabCtrlSaleItem = New System.Windows.Forms.TabControl()
         Me.TabPageSaleItemSell = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -320,7 +321,7 @@ Partial Class FrmVentaItem
         Me.TabPageSaleItemUpdate.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageSaleItemUpdate.Size = New System.Drawing.Size(792, 424)
         Me.TabPageSaleItemUpdate.TabIndex = 1
-        Me.TabPageSaleItemUpdate.Text = "Gestionar"
+        Me.TabPageSaleItemUpdate.Text = "Eliminar Venta"
         Me.TabPageSaleItemUpdate.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel3
@@ -474,6 +475,7 @@ Partial Class FrmVentaItem
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.TabCtrlSaleItem)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmVentaItem"
         Me.Text = "Vender Items"
         Me.TabCtrlSaleItem.ResumeLayout(False)

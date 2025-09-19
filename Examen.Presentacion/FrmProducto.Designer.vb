@@ -22,6 +22,7 @@ Partial Class FrmProducto
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmProducto))
         Me.TabContrlProduct = New System.Windows.Forms.TabControl()
         Me.TabPageListProduct = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -165,6 +166,7 @@ Partial Class FrmProducto
         Me.DgvListProductTabList.AllowUserToDeleteRows = False
         Me.DgvListProductTabList.AllowUserToOrderColumns = True
         Me.DgvListProductTabList.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DgvListProductTabList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DgvListProductTabList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvListProductTabList.Location = New System.Drawing.Point(23, 73)
         Me.DgvListProductTabList.Name = "DgvListProductTabList"
@@ -435,6 +437,7 @@ Partial Class FrmProducto
         Me.DgvListProductTabUpdate.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DgvListProductTabUpdate.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DgvListProductTabUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvListProductTabUpdate.Location = New System.Drawing.Point(3, 73)
         Me.DgvListProductTabUpdate.Name = "DgvListProductTabUpdate"
@@ -609,6 +612,7 @@ Partial Class FrmProducto
         Me.DgvListProductTabDelete.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DgvListProductTabDelete.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DgvListProductTabDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvListProductTabDelete.Location = New System.Drawing.Point(3, 73)
         Me.DgvListProductTabDelete.Name = "DgvListProductTabDelete"
@@ -622,6 +626,7 @@ Partial Class FrmProducto
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.TabContrlProduct)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmProducto"
         Me.Text = "Productos"
         Me.TabContrlProduct.ResumeLayout(False)
